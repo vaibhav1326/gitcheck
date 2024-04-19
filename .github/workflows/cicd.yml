@@ -1,0 +1,19 @@
+name: Compare Branches
+on:
+  pull_request:
+      branches:
+      - staging
+      - develop
+
+jobs:
+  compare-branches:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Check code changes
+      run: |
+        git fetch origin
+        git diff --name-only origin/staging...$GITHUB_SHA
