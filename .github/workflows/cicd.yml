@@ -17,6 +17,11 @@ jobs:
     - name: Install Git
       run: sudo apt-get update && sudo apt-get install git -y
 
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+        
     - name: Execute script on develop branch
       run: python -u script.py ${{ github.workspace }} develop
       if: github.ref == 'refs/heads/develop'
