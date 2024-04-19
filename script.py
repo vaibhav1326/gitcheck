@@ -21,28 +21,28 @@ def check_changes_exist(branch_name):
 
 def merge_branch_with_stag():
     print('Checking if feature branch has changes...')
-    if not check_changes_exist('dev'):
+    if not check_changes_exist('develop'):
         print('Error: There are no changes in the feature branch.')
         sys.exit(-1)
 
-    print('Switching to dev branch...')
-    git_checkout('dev')
+    print('Switching to develop branch...')
+    git_checkout('develop')
 
-    print('Merging feature branch with dev...')
+    print('Merging feature branch with develop...')
     git_merge('feature')
 
-    print('Changes merged successfully into dev.')
+    print('Changes merged successfully into develop.')
 
 def merge_branch_with_master():
     print('Checking if feature branch has changes...')
-    if not check_changes_exist('dev'):
+    if not check_changes_exist('develop'):
         print('Error: There are no changes in the feature branch.')
         sys.exit(-1)
 
-    print('Switching to dev branch...')
-    git_checkout('dev')
+    print('Switching to develop branch...')
+    git_checkout('develop')
 
-    print('Merging feature branch with dev...')
+    print('Merging feature branch with develop...')
     git_merge('feature')
 
     print('Switching to master branch...')

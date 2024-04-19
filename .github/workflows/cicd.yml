@@ -1,8 +1,7 @@
 name: Compare Branches
-
 on:
-  push:
-    branches:
+  pull_request:
+      branches:
       - staging
       - develop
 
@@ -14,18 +13,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Install Git
-      run: sudo apt-get update && sudo apt-get install git -y
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-        
-    - name: Execute script on develop branch
-      run: python -u script.py ${{ github.workspace }} develop
-      if: github.ref == 'refs/heads/develop'
-
-    - name: Execute script on staging branch
-      run: python -u script.py ${{ github.workspace }} staging
-      if: github.ref == 'refs/heads/staging'
+    - name: Check code changes
+      run: |
+        git fetch origin
+        git diff --name-only origin/staging...$GITHUB_SHA
