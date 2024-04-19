@@ -1,0 +1,23 @@
+name: Compare Branches
+
+on:
+  push:
+    branches:
+      - develop
+      - staging
+
+jobs:
+  compare-branches:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Git
+      run: sudo apt-get update && sudo apt-get install git -y
+
+    - name: Execute script
+      run: |
+        python -u script.py ${{ github.workspace }}
+
